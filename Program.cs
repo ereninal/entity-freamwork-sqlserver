@@ -16,7 +16,7 @@ namespace entity_freamwork_sqlserver_example
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-            .UseSqlServer(@"Data Source = .\SQLEXPRESS;Initial Catalog=ShopDb;Integrated Security=SSPI; ")
+            .UseSqlServer(@"Data Source = EREN-LAPTOP\SQLEXPRESS;Initial Catalog=ShopDb;Integrated Security=SSPI; ")
             .UseLoggerFactory(MyLoggerFactory);
             
         }
