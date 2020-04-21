@@ -79,13 +79,7 @@ namespace entity_freamwork_sqlserver_example
             //UpdateProduct(2,"Xaiomi Note",2000);
             //InsertUser("Erdem AL","erdemal@gmail.com");
             //UpdateUser(4,"Onur Gençoğlu","onurgencoglu@gmail.com");
-            InsertAdres("Eren","İş",1);
-            InsertAdres("Eren","Ev",1);
-            InsertAdres("Eren","Yurt",1);
-            InsertAdres("Erdem","İş",2);
-            InsertAdres("Erdem","Ev",2);
-            InsertAdres("Yusuf","İş",3);
-            InsertAdres("Yusuf","Ev",3);
+            InsertAdres("ereninal1@gmail.com","Eren","İş - 2");
 
         }
         static void AddProducts()
@@ -178,19 +172,32 @@ namespace entity_freamwork_sqlserver_example
             }
             
         }
-        static void InsertAdres(string fullname,string title,int userid)
+        static void InsertAdres(string username,string fullname,string title)
         {
             using (var db = new ShopContext())
             {
-                var adres = new Adress()
+                var user = db.Users.FirstOrDefault(u=>u.Email==username);
+                if(user != null)
+                {
+                    user.Adresses = new List<Adress>();
+                    user.Adresses.AddRange(new List<Adress>()
+                    {
+                        new Adress(){Fullname = fullname,Title=title}
+                    });
+                    db.SaveChanges();
+                    Console.WriteLine("Adres data added");
+                }
+                else
+                    Console.WriteLine("Adres");
+                /*var adres = new Adress()
                 {
                     Fullname = fullname,
                     Title = title,
                     UserId = userid
                 };
                 db.Adresses.AddRange(adres);
-                db.SaveChanges();
-                Console.WriteLine("Adres data added");
+                db.SaveChanges();*/
+                
             }
         }
     }
