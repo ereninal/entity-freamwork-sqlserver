@@ -76,7 +76,8 @@ namespace entity_freamwork_sqlserver_example
             //AddProducts();
             //GetProductById(3);
             //GetProducts();
-            UpdateProduct(2,"Xaiomi Note",2000);
+            //UpdateProduct(2,"Xaiomi Note",2000);
+            InsertUser("Eren İNAL","ereninal1@gmail.com");
         }
         static void AddProducts()
         {
@@ -139,6 +140,20 @@ namespace entity_freamwork_sqlserver_example
                 query.Price =price;
                 db.SaveChanges();
                 Console.WriteLine("Entry updated");
+            }
+        }
+        static void InsertUser(string name,string email)
+        {
+            using(var db = new ShopContext())
+            {
+                var user = new User()
+                {
+                    Name = name,
+                    Email = email
+                };
+                db.Users.AddRange(user);
+                db.SaveChanges();
+                Console.WriteLine("User Added");
             }
         }
     }
