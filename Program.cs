@@ -78,7 +78,15 @@ namespace entity_freamwork_sqlserver_example
             //GetProducts();
             //UpdateProduct(2,"Xaiomi Note",2000);
             //InsertUser("Erdem AL","erdemal@gmail.com");
-            UpdateUser(4,"Onur Gençoğlu","onurgencoglu@gmail.com");
+            //UpdateUser(4,"Onur Gençoğlu","onurgencoglu@gmail.com");
+            InsertAdres("Eren","İş",1);
+            InsertAdres("Eren","Ev",1);
+            InsertAdres("Eren","Yurt",1);
+            InsertAdres("Erdem","İş",2);
+            InsertAdres("Erdem","Ev",2);
+            InsertAdres("Yusuf","İş",3);
+            InsertAdres("Yusuf","Ev",3);
+
         }
         static void AddProducts()
         {
@@ -169,6 +177,21 @@ namespace entity_freamwork_sqlserver_example
                 Console.Write("Entry updated");
             }
             
+        }
+        static void InsertAdres(string fullname,string title,int userid)
+        {
+            using (var db = new ShopContext())
+            {
+                var adres = new Adress()
+                {
+                    Fullname = fullname,
+                    Title = title,
+                    UserId = userid
+                };
+                db.Adresses.AddRange(adres);
+                db.SaveChanges();
+                Console.WriteLine("Adres data added");
+            }
         }
     }
 
