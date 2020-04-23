@@ -15,6 +15,8 @@ namespace entity_freamwork_sqlserver_example
         public DbSet<Order> Orders { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Adress> Adresses { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
         public static readonly ILoggerFactory MyLoggerFactory
             = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
@@ -58,8 +60,25 @@ namespace entity_freamwork_sqlserver_example
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        public Customer Customer { get; set; }
         public List<Adress> Adresses {get; set;}
 
+    }
+    public class Customer
+    {
+        public int Id { get; set; }
+        public string IdentityNumber { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public User User { get; set; }
+        public int UserId { get; set; }
+
+    }
+    public class Supplier
+    {
+        public int Id { get; set; }
+        public string  Name { get; set; }
+        public string TaxNumber { get; set; }
     }
     public class Adress
     {
